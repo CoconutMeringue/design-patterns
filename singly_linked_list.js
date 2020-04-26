@@ -85,11 +85,16 @@ class SinglyLinkedList {
       return node;
     }
   }
+
+  set(index, value) {
+    let node = this.get(index);
+    node.value = value;
+    return node;
+  }
 }
 
 const list = new SinglyLinkedList();
-console.log(list);
 list.push('Biscuit');
 list.push('Meringue');
-list.push('Cake');
-console.log(list.get(4));
+list.set(0, 'Shortbread');
+console.log(list);
