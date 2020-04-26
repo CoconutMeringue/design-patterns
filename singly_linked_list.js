@@ -88,13 +88,36 @@ class SinglyLinkedList {
 
   set(index, value) {
     let node = this.get(index);
-    node.value = value;
-    return node;
+    if (node) {
+      node.value = value;
+      return node;
+    }
+    return false;
+  }
+
+  insert(index, value) {
+    if (index < 0 || index > this.length) {
+      return false;
+    }
+    if (index === this.length) {
+      this.push(value);
+    } else if (index === 0) {
+      this.unshift(value);
+    } else {
+      let newNode = new Node(value);
+      let previousNode = this.get(index - 1);
+      let node = this.get(index);
+
+      previousNode.next = newNode;
+      newNode.next = node;
+      this.length++
+    }
+    return true;
   }
 }
 
 const list = new SinglyLinkedList();
-list.push('Biscuit');
-list.push('Meringue');
-list.set(0, 'Shortbread');
-console.log(list);
+list.push('cake');
+list.push('meringue');
+list.push('biscuit');
+console.log(list.insert(12,'bombon'));
