@@ -73,10 +73,23 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) {
+      return null;
+    } else {
+      let node = this.head;
+      for (let i = 0; i != index; i++) {
+        node = node.next;
+      }
+      return node;
+    }
+  }
 }
 
 const list = new SinglyLinkedList();
 console.log(list);
-list.unshift('Biscuit');
-list.unshift('Meringue');
-console.log(list);
+list.push('Biscuit');
+list.push('Meringue');
+list.push('Cake');
+console.log(list.get(4));
