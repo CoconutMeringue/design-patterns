@@ -110,9 +110,27 @@ class SinglyLinkedList {
 
       previousNode.next = newNode;
       newNode.next = node;
-      this.length++
+      this.length++;
     }
     return true;
+  }
+
+  remove(index) {
+    let node = this.get(index);
+    if (index < 0 || index > this.length - 1 || !this.head) {
+      return false;
+    }
+    if (index === 0) {
+      this.shift();
+    } else if (index === this.length - 1) {
+      this.pop();
+    } else {
+      let previousNode = this.get(index - 1);
+      let nextNode = this.get(index + 1);
+      previousNode.next = nextNode;
+      this.length--;
+    }
+    return node;
   }
 }
 
@@ -120,4 +138,6 @@ const list = new SinglyLinkedList();
 list.push('cake');
 list.push('meringue');
 list.push('biscuit');
-console.log(list.insert(12,'bombon'));
+console.log(list);
+list.remove(3);
+console.log(list);
